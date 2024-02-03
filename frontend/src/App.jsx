@@ -9,8 +9,8 @@ const App = () => {
 	return (
 		<>
 			<Routes>
-				<Route path='/' element={<Layoute />}>
-					{/* <Route path='/' element={token ? <Layoute /> : <Login />}> */}
+				{/* <Route path='/' element={<Layoute />}> */}
+					<Route path='/' element={token ? <Layoute /> : <Login />}>
 					<Route index element={<HomePage />} />
 				</Route>
 				<Route path='/login' element={<Login />} />
