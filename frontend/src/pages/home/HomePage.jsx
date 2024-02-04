@@ -4,6 +4,22 @@ import { useEffect, useState } from 'react'
 import { styles } from '../../utils/styles'
 
 const HomePage = () => {
+	useEffect(() => {
+		fetch('http://localhost:3000/api/books')
+			.then(response => {
+				// JSON ma'lumotlarni qayta ishlash
+				return response.json()
+			})
+			.then(data => {
+				// Qabul qilingan ma'lumotlar bilan ishlang
+				console.log(data)
+			})
+			.catch(error => {
+				// Xatolik bo'lganda qanday ishlab chiqishingizni aniqlang
+				console.error('Xatolik sodir bo`ldi:', error)
+			})
+	}, [])
+
 	const [sideBar, setSideBar] = useState(false)
 	const [width, setWidth] = useState(window.innerWidth)
 
