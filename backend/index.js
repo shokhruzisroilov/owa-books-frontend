@@ -235,7 +235,16 @@ app.put('/api/books/:bookId', (req, res) => {
 })
 
 // Delete Book
+app.delete('/api/books/:bookId', (req, res) => {
+	const book = books.find(b => b.id === parseInt(req.params.bookId))
+	if (!book) {
+		return res.status(404).send('Berilgan IDga teng bolgan kitob topilmadi')
+	}
+	const bookIndex = books.indexOf(book)
+	books.splice(bookIndex, 1)
 
+	res.send(book)
+})
 
 function validateBook(book) {
 	const bookSchema = Joi.object({
