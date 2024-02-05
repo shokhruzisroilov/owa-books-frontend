@@ -1,4 +1,4 @@
-import { HomePage, Login, Register, NotFountPage } from './pages'
+import { HomePage, Login, Register, NotFountPage, BookInfo } from './pages'
 import Layoute from './layouts/Layoute'
 
 import { Routes, Route } from 'react-router-dom'
@@ -12,6 +12,7 @@ const App = () => {
 				<Route path='/' element={<Layoute />}>
 					{/* <Route path='/' element={token ? <Layoute /> : <Login />}> */}
 					<Route index element={<HomePage />} />
+					<Route path='/book-info' element={<BookInfo />} />
 				</Route>
 				<Route path='/login' element={<Login />} />
 				<Route path='/register' element={<Register />} />

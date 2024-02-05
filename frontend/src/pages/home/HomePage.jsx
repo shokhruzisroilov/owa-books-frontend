@@ -2,26 +2,27 @@ import { Search, SideBar, Books } from '../../components'
 import { MenuUnfoldOutlined } from '@ant-design/icons'
 import { useEffect, useState } from 'react'
 import { styles } from '../../utils/styles'
+import BooksService from '../../services/books'
 
 const HomePage = () => {
-	useEffect(() => {
-		fetch('http://localhost:3000/api/books')
-			.then(response => {
-				// JSON ma'lumotlarni qayta ishlash
-				return response.json()
-			})
-			.then(data => {
-				// Qabul qilingan ma'lumotlar bilan ishlang
-				console.log(data)
-			})
-			.catch(error => {
-				// Xatolik bo'lganda qanday ishlab chiqishingizni aniqlang
-				console.error('Xatolik sodir bo`ldi:', error)
-			})
-	}, [])
+	const [booksData, setBooksData] = useState(null)
+	console.log(booksData)
+	// const [error, serError] = useState(null)
 
 	const [sideBar, setSideBar] = useState(false)
 	const [width, setWidth] = useState(window.innerWidth)
+
+	const getBooks = async () => {
+		try {
+			const response = await BooksService.getBooks()
+			setBooksData(response)
+		} catch (error) {
+			console.error(error)
+		}
+	}
+	useEffect(() => {
+		getBooks()
+	}, [])
 
 	useEffect(() => {
 		function handleResize() {
@@ -61,7 +62,7 @@ const HomePage = () => {
 			>
 				<div className='w-full p-8 max-sm:px-4'>
 					<Search />
-					<Books />
+					<Books booksData={booksData} />
 				</div>
 			</div>
 		</div>
