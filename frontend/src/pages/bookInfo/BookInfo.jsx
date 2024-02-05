@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import { book, headphones, author, share, notes, reviews } from '../../assets'
+import { Link, useParams } from 'react-router-dom'
+import { book, headphones, author } from '../../assets'
 import { styles } from '../../utils/styles'
 import {
 	ArrowLeftOutlined,
@@ -8,8 +8,15 @@ import {
 	HeatMapOutlined,
 	CheckCircleFilled,
 } from '@ant-design/icons'
+import { bookNote } from '../../utils/bookNode'
+import { bookAvailability } from '../../utils/bookAvailability'
+import { useContext } from 'react'
+import Context from '../../context/Context'
 
 const BooksInfo = () => {
+	const { bookInfo } = useContext(Context)
+	console.log(bookInfo)
+
 	return (
 		<div className='p-10 w-full min-h-screen bg-primary'>
 			<Link
@@ -24,28 +31,37 @@ const BooksInfo = () => {
 			<div>
 				<div className='mt-10 flex justify-center items-start gap-x-20 gap-y-10 flex-wrap'>
 					<div className='px-8 py-6 bg-primaryBlack text-white text-[11px] font-[700] leading-[12px] rounded-[10px]'>
-						<img src={book} alt='book' className='max-w-[210px] h-[277px]' />
+						<img
+							src={bookInfo?.img}
+							alt='book'
+							className='max-w-[210px] h-[277px]'
+						/>
 						<div className={`flex items-center justify-around mt-[27px]`}>
-							<span className='flex flex-col items-center justify-center cursor-pointer'>
-								<img src={reviews} alt='icons' className='w-[32px] h-[32px]' />
-								Review
-							</span>
-							<span className='flex flex-col items-center justify-center cursor-pointer'>
-								<img src={notes} alt='icons' className='w-[32px] h-[32px]' />
-								Notes
-							</span>
-							<span className='flex flex-col items-center justify-center cursor-pointer'>
-								<img src={share} alt='icons' className='w-[32px] h-[32px]' />
-								Share
-							</span>
+							{bookNote &&
+								bookNote.map(item => {
+									return (
+										<span
+											key={item.id}
+											className='flex flex-col items-center justify-center cursor-pointer'
+										>
+											<img
+												src={item.img}
+												alt='icons'
+												className='w-[32px] h-[32px]'
+											/>
+											{item.title}
+										</span>
+									)
+								})}
 						</div>
 					</div>
 					<div>
 						<h3 className='text-white text-[35px] font-normal leading-[44.983px ]'>
-							fkldsjafkldsja
+							{bookInfo?.title}
 						</h3>
 						<p className='text-white text-[15px] font-normal mt-[18px]'>
-							By <span className='underline'>Steve Krug</span>, 2000
+							By <span className='underline'>{bookInfo?.author}</span>,{' '}
+							{bookInfo?.createdAt}
 						</p>
 						<p className='text-white text-[15px] font-normal mt-[5px]'>
 							Second Edition
@@ -59,34 +75,27 @@ const BooksInfo = () => {
 									<StarFilled />
 									<StarOutlined />
 								</span>
-								<p>4.0 Ratings</p>
+								<p>{bookInfo?.rate} Ratings</p>
 							</span>
-							<p>25 Currently reading</p>
-							<p>119 Have read</p>
+							<p>{bookInfo?.curentlyReading} Currently reading</p>
+							<p>{bookInfo?.haveRead} Have read</p>
 						</div>
 						<div className='flex gap-12 max-xs:gap-6 mt-[30px]'>
 							<ul>
 								<span className='text-white text-[14px] font-bold mb-1'>
 									Availability
 								</span>
-								<li className='flex items-center mt-2'>
-									<CheckCircleFilled className='text-[#F27851]' />
-									<span className='ml-2 text-white text-[15px] font-normal'>
-										Hard Copy
-									</span>
-								</li>
-								<li className='flex items-center mt-2'>
-									<CheckCircleFilled className='text-[#F27851]' />
-									<span className='ml-2 text-white text-[15px] font-normal'>
-										Hard Copy
-									</span>
-								</li>
-								<li className='flex items-center mt-2'>
-									<CheckCircleFilled className='text-[#F27851]' />
-									<span className='ml-2 text-white text-[15px] font-normal'>
-										E - Book
-									</span>
-								</li>
+								{bookAvailability &&
+									bookAvailability.map(item => {
+										return (
+											<li key={item.id} className='flex items-center mt-2'>
+												<CheckCircleFilled className='text-[#F27851]' />
+												<span className='ml-2 text-white text-[15px] font-normal'>
+													{item.name}
+												</span>
+											</li>
+										)
+									})}
 							</ul>
 							<ul>
 								<span className='text-white text-[14px] font-bold'>Status</span>
@@ -130,17 +139,13 @@ const BooksInfo = () => {
 									<span className='text-[#F27851]'>About</span> Author
 								</h3>
 								<h4 className='text-[20px] text-white font-normal leading-[25.705px] mt-5'>
-									Steve Krug
+									{bookInfo?.author}
 								</h4>
 							</span>
 							<img src={author} alt='author image' className='w-[88px]' />
 						</div>
 						<p className='mt-6 text-white text-[15px] font-normal leading-[19.278px]'>
-							Steve Krug is a usability consultant who has more than 30 years of
-							experience as a user advocate for companies like Apple, Netscape,
-							AOL, Lexus, and others. Based in part on the success of his first
-							book, Don't Make Me Think, he has become a highly sought-after
-							speaker on usability design.
+							{bookInfo?.aboutAuthor}
 						</p>
 					</div>
 				</div>

@@ -8,11 +8,13 @@ const Books = ({ booksData }) => {
 					return (
 						<BooksItem
 							key={book.id}
+							id={book.id}
 							img={book.img}
 							title={book.title}
 							author={book.author}
 							createdAt={book.createdAt}
 							rate={book.rate}
+							like={book.like}
 						/>
 					)
 				})}

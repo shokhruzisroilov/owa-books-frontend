@@ -1,13 +1,18 @@
-import { HeartOutlined } from '@ant-design/icons'
+import { HeartFilled, HeartOutlined } from '@ant-design/icons'
 import { styles } from '../../../utils/styles'
 import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import Context from '../../../context/Context'
 
-const BooksItem = ({ img, title, author, createdAt, rate }) => {
+const BooksItem = ({ id, img, title, author, createdAt, rate, like }) => {
+	const { setLikeToTrue, getBook } = useContext(Context)
+
+	const sliceTitle = title.length >= 33 ? title.slice(0, 33) + '...' : title
 	return (
 		<div className={`max-w-[240px] min-h-[460px] bg-primaryBlack px-6 py-4 `}>
 			<img src={img} alt='book' className='w-full h-[260px] object-cover' />
 			<h3 className='pt-3 text-white text-[20px] font-normal leading-[25.705px ]'>
-				{title}
+				{sliceTitle}
 			</h3>
 			<p className='text-primaryRed text-base font-normal leading-[20.564px ] pt-[5px]'>
 				{author}, {createdAt}
@@ -16,10 +21,20 @@ const BooksItem = ({ img, title, author, createdAt, rate }) => {
 				<span className='text-white text-[14px] font-normal leading-[17.993px] pt-[5px]'>
 					{rate}/5
 				</span>
-				<HeartOutlined className='text-xl text-white cursor-pointer' />
+				{like ? (
+					<HeartFilled
+						className='text-xl text-[#F34040] cursor-pointer'
+						onClick={() => setLikeToTrue(id)}
+					/>
+				) : (
+					<HeartOutlined
+						className='text-xl text-white cursor-pointer'
+						onClick={() => setLikeToTrue(id)}
+					/>
+				)}
 			</div>
 			<div className={`${styles.blockBetween} mt-[30px]`}>
-				<Link to='/book-info'>
+				<Link to={`/book-info/${id}`} onClick={() => getBook(id)}>
 					<button
 						className={`${styles.blockCenter} h-[25px] px-[25px] rounded-[5px] bg-white text-primaryRed text-[12px] font-[500] leading-[16px]`}
 					>

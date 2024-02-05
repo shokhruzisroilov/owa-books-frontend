@@ -2,27 +2,15 @@ import { Search, SideBar, Books } from '../../components'
 import { MenuUnfoldOutlined } from '@ant-design/icons'
 import { useEffect, useState } from 'react'
 import { styles } from '../../utils/styles'
-import BooksService from '../../services/books'
+import { useContext } from 'react'
+import Context from '../../context/Context'
 
 const HomePage = () => {
-	const [booksData, setBooksData] = useState(null)
-	console.log(booksData)
-	// const [error, serError] = useState(null)
+	const { booksData } = useContext(Context)
+	// console.log(booksData)
 
 	const [sideBar, setSideBar] = useState(false)
 	const [width, setWidth] = useState(window.innerWidth)
-
-	const getBooks = async () => {
-		try {
-			const response = await BooksService.getBooks()
-			setBooksData(response)
-		} catch (error) {
-			console.error(error)
-		}
-	}
-	useEffect(() => {
-		getBooks()
-	}, [])
 
 	useEffect(() => {
 		function handleResize() {
