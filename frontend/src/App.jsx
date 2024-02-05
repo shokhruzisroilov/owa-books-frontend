@@ -5,7 +5,7 @@ import { Routes, Route } from 'react-router-dom'
 import { useState } from 'react'
 
 const App = () => {
-	const [token, setToken] = useState(localStorage.getItem('owa-book-token'))
+	// const [token, setToken] = useState(localStorage.getItem('owa-book-token'))
 	return (
 		<>
 			<Routes>
