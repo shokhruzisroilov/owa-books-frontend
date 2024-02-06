@@ -1,13 +1,13 @@
 import { Search, SideBar, Books } from '../../components'
-import { MenuUnfoldOutlined } from '@ant-design/icons'
-import { useEffect, useState } from 'react'
-import { styles } from '../../utils/styles'
-import { useContext } from 'react'
 import Context from '../../context/Context'
+import Loader from '../../animations/Loader'
+import { MenuUnfoldOutlined } from '@ant-design/icons'
+import { styles } from '../../utils/styles'
+import { useEffect, useState } from 'react'
+import { useContext } from 'react'
 
 const HomePage = () => {
-	const { booksData } = useContext(Context)
-	// console.log(booksData)
+	const { searchBookData, isLoading } = useContext(Context)
 
 	const [sideBar, setSideBar] = useState(false)
 	const [width, setWidth] = useState(window.innerWidth)
@@ -50,7 +50,8 @@ const HomePage = () => {
 			>
 				<div className='w-full p-8 max-sm:px-4'>
 					<Search />
-					<Books booksData={booksData} />
+					{isLoading ? <Loader /> : null}
+					<Books searchBookData={searchBookData} />
 				</div>
 			</div>
 		</div>

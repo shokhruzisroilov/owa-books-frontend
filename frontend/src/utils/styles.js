@@ -2,6 +2,7 @@ export const styles = {
 	container: 'px-16 max-md:px-5 m-auto',
 	paragraph: 'text-primaryLight text-base font-normal leading-normal',
 	blockStart: 'flex items-start justify-between',
+	blockEnd: 'flex items-end, justify-between',
 	blockCenter: 'flex items-center justify-center',
 	blockBetween: 'flex items-center justify-between',
 	input:

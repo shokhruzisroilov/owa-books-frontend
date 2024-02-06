@@ -1,10 +1,10 @@
 import BooksItem from './booksItem/BooksItem'
 
-const Books = ({ booksData }) => {
+const Books = ({ searchBookData }) => {
 	return (
 		<div className='flex flex-wrap justify-center mt-10 gap-6'>
-			{booksData &&
-				booksData.map(book => {
+			{searchBookData &&
+				searchBookData.map(book => {
 					return (
 						<BooksItem
 							key={book.id}
