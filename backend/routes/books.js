@@ -192,7 +192,6 @@ route.post('/', (req, res) => {
 	}
 	books.unshift(book)
 	res.status(201).send(book)
-	res.send('Success')
 })
 
 // Get Book Id

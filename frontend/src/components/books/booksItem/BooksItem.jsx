@@ -1,18 +1,23 @@
 import Context from '../../../context/Context'
 import { useContext } from 'react'
-import { HeartFilled, HeartOutlined } from '@ant-design/icons'
+import {
+	DeleteFilled,
+	EditFilled,
+	HeartFilled,
+	HeartOutlined,
+} from '@ant-design/icons'
 import { styles } from '../../../utils/styles'
 import { Link } from 'react-router-dom'
 
 const BooksItem = ({ id, img, title, author, createdAt, rate, like }) => {
-	const { getBookLike } = useContext(Context)
+	const { getBookLike, deleteBook } = useContext(Context)
 
 	const sliceTitle = title.length >= 33 ? title.slice(0, 33) + '...' : title
 	return (
 		<div
-			className={`max-w-[240px] min-h-[476px] bg-primaryBlack px-6 py-4 rounded-[10px] relative`}
+			className={`w-[240px] min-h-[476px] bg-primaryBlack px-6 py-4 rounded-[10px] relative`}
 		>
-			<div className='w-full bg-white'>
+			<div className='w-full bg-white rounded-[10px]'>
 				<img
 					src={img}
 					alt='Book image not found'
@@ -51,11 +56,19 @@ const BooksItem = ({ id, img, title, author, createdAt, rate, like }) => {
 						Info
 					</button>
 				</Link>
-				<button
-					className={`${styles.blockCenter} w-[86px] h-[25px] px-[25px] rounded-[5px] bg-primaryRed text-white text-[12px] font-[500] leading-[16px]`}
-				>
-					Read
-				</button>
+				<div className='flex '>
+					<div
+						className={`${styles.blockCenter} py-2 px-3 rounded-[5px] bg-green-600 text-white text-[12px] font-[500] leading-[16px] cursor-pointer`}
+					>
+						<EditFilled className='text-xl text-white ' />
+					</div>
+					<div
+						className={`${styles.blockCenter}  py-2 px-3 rounded-[5px] bg-primaryRed text-white text-[12px] font-[500] leading-[16px] cursor-pointer`}
+						onClick={() => deleteBook(id)}
+					>
+						<DeleteFilled className='text-xl text-white ' />
+					</div>
+				</div>
 			</div>
 		</div>
 	)

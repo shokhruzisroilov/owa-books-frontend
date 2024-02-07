@@ -1,14 +1,16 @@
 import { ArrowLeftOutlined } from '@ant-design/icons'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { styles } from '../../utils/styles'
 import { useForma } from '../../costumHooks/useForma'
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import Context from '../../context/Context'
 import { Alert, Space } from 'antd'
 
 const CreateBook = () => {
-	const { createBookFunc, errorCreateBook } = useContext(Context)
-	const [value, handleChange, resetForm] = useForma({
+	const { createBookFunc, errorCreateBook, responseCreateBook } =
+		useContext(Context)
+	const navigate = useNavigate()
+	const [value, handleChange] = useForma({
 		title: '',
 		description: '',
 		author: '',
@@ -37,33 +39,27 @@ const CreateBook = () => {
 			haveRead: haveRead,
 		}
 		createBookFunc(bookData)
-		resetForm()
+		navigate('/')
 	}
 
 	return (
 		<div className='p-10 w-full min-h-screen bg-primary'>
-			{/* {true ? (
+			{responseCreateBook && (
 				<Space
 					direction='vertical'
 					style={{ width: '40%' }}
 					className='pr-5 absolute right-0'
 					data-aos='fade-down-left'
 				>
-					<Space
-						direction='vertical'
-						style={{ width: '40%' }}
-						className='pr-5 absolute right-0'
-						data-aos='fade-down-left'
-					>
-						<Alert message='Success Tips' type='success' showIcon closable />
-					</Space>
+					<Alert message='Success Tips' type='success' showIcon closable />
 				</Space>
-			) : null} */}
-			{errorCreateBook ? (
+			)}
+
+			{errorCreateBook && (
 				<Space
 					direction='vertical'
 					style={{ width: '40%' }}
-					className='pr-5 absolute right-0'
+					className='pr-5 absolute right-0 bottom-48'
 					data-aos='fade-down-left'
 				>
 					<Alert
@@ -73,7 +69,8 @@ const CreateBook = () => {
 						closable
 					/>
 				</Space>
-			) : null}
+			)}
+
 			<Link
 				to='/'
 				className='max-w-[150px] flex items-center gap-[9px] cursor-pointer'
@@ -85,7 +82,7 @@ const CreateBook = () => {
 			</Link>
 
 			<form onSubmit={handleSubmit}>
-				<div className='mt-10 flex gap-10'>
+				<div className='mt-10 flex max-sm:flex-col gap-10'>
 					<div className='flex flex-col gap-10 w-full'>
 						<input
 							type='text'

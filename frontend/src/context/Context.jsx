@@ -16,7 +16,7 @@ export const ContextProvider = ({ children }) => {
 
 	const [errorBookLike, setErrorBookLike] = useState(null)
 	const [errorCreateBook, setErrorCreateBook] = useState(null)
-
+	const [responseCreateBook, setResponseCreateBook] = useState(null)
 
 	// GetAllBooks
 	const getBooks = async () => {
@@ -67,9 +67,22 @@ export const ContextProvider = ({ children }) => {
 		try {
 			const response = await BooksService.createBook(bookData)
 			setBooksData([...booksData, response])
+			setResponseCreateBook(response)
 			getBooks()
 		} catch (error) {
 			setErrorCreateBook(error)
+		}
+	}
+
+	// Delete Book
+	const deleteBook = async id => {
+		try {
+			const response = await BooksService.deleteBook(id)
+			const bookId = response.id
+			const deleteBookData = booksData.filter(b => b.id !== bookId)
+			setBooksData(deleteBookData)
+		} catch (error) {
+			setErrorBookLike(error)
 		}
 	}
 
@@ -100,6 +113,8 @@ export const ContextProvider = ({ children }) => {
 				errorBookLike,
 				createBookFunc,
 				errorCreateBook,
+				responseCreateBook,
+				deleteBook,
 			}}
 		>
 			{children}

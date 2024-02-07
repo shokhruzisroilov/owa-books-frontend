@@ -12,7 +12,7 @@ const Navbar = () => {
 			</div>
 			<Link
 				to='/create-book'
-				className='bg-primaryRed px-5 py-[14px] rounded-[6px] text-base text-white font-semibold leading-5'
+				className='bg-green-600 px-5 py-[14px] rounded-[6px] text-base text-white font-semibold leading-5'
 			>
 				Create book
 			</Link>

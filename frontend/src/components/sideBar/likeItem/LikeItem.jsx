@@ -11,11 +11,13 @@ const LikeItem = ({ id, img, title, author }) => {
 		<div
 			className={`${styles.blockCenter} w-[284px] gap-[25px] rounded-[10px] bg-likesColor p-[10px]`}
 		>
-			<img
-				src={img}
-				alt='book'
-				className='w-[75px] rounded-[5px] border-[1px] border-[#F1F1F1]'
-			/>
+			<div className='w-[75px] h-[100px] object-cover'>
+				<img
+					src={img}
+					alt='book'
+					className='w-[75px] h-[100px] rounded-[5px] object-cover border-[1px] border-[#F1F1F1]'
+				/>
+			</div>
 			<div>
 				<h3 className='text-[20px] text-white font-semibold leading-[25.705px]'>
 					{sliceTitle}

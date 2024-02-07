@@ -73,8 +73,8 @@ const BooksInfo = () => {
 						<div className='px-8 py-6 bg-primaryBlack text-white text-[11px] font-[700] leading-[12px] rounded-[10px]'>
 							<img
 								src={bookInfo?.img}
-								alt='book'
-								className='max-w-[210px] h-[277px]'
+								alt='Book image is not fount'
+								className='w-[210px] bg-white text-black h-[277px]'
 							/>
 							<div className={`flex items-center justify-around mt-[27px]`}>
 								{bookNote &&
