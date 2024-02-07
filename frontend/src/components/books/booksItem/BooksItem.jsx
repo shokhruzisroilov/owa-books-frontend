@@ -1,18 +1,24 @@
+import Context from '../../../context/Context'
+import { useContext } from 'react'
 import { HeartFilled, HeartOutlined } from '@ant-design/icons'
 import { styles } from '../../../utils/styles'
 import { Link } from 'react-router-dom'
-import { useContext } from 'react'
-import Context from '../../../context/Context'
 
 const BooksItem = ({ id, img, title, author, createdAt, rate, like }) => {
-	const { setLikeToTrue } = useContext(Context)
+	const { getBookLike } = useContext(Context)
 
 	const sliceTitle = title.length >= 33 ? title.slice(0, 33) + '...' : title
 	return (
 		<div
 			className={`max-w-[240px] min-h-[476px] bg-primaryBlack px-6 py-4 rounded-[10px] relative`}
 		>
-			<img src={img} alt='book' className='w-full h-[260px] object-cover' />
+			<div className='w-full bg-white'>
+				<img
+					src={img}
+					alt='Book image not found'
+					className='w-full h-[260px] object-cover'
+				/>
+			</div>
 			<h3 className='pt-3 text-white text-[20px] font-normal leading-[25.705px ]'>
 				{sliceTitle}
 			</h3>
@@ -26,12 +32,12 @@ const BooksItem = ({ id, img, title, author, createdAt, rate, like }) => {
 				{like ? (
 					<HeartFilled
 						className='text-xl text-[#F34040] cursor-pointer'
-						onClick={() => setLikeToTrue(id)}
+						onClick={() => getBookLike(id)}
 					/>
 				) : (
 					<HeartOutlined
 						className='text-xl text-white cursor-pointer'
-						onClick={() => setLikeToTrue(id)}
+						onClick={() => getBookLike(id)}
 					/>
 				)}
 			</div>

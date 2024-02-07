@@ -3,10 +3,10 @@ import { MenuFoldOutlined } from '@ant-design/icons'
 import { styles } from '../../utils/styles'
 import { useContext } from 'react'
 import Context from '../../context/Context'
+import { Alert, Space } from 'antd'
 
 const SideBar = ({ setSideBar }) => {
-	const { booksData } = useContext(Context)
-	// console.log(booksData)
+	const { booksData, errorBookLike } = useContext(Context)
 	// Filter sidebar books
 	const filterLikedBook = booksData?.filter(item => item.like === true)
 	// console.log(filterLikedBook)
@@ -23,6 +23,21 @@ const SideBar = ({ setSideBar }) => {
 				/>
 			</div>
 			<div className='pt-7 flex flex-col gap-5'>
+				{filterLikedBook.length === 0 ? (
+					<p className='text-white text-base font-semibold leading-[30px]'>
+						Add your favorite books
+					</p>
+				) : null}
+
+				{errorBookLike ? (
+					<Space direction='vertical' style={{ width: '100%' }} className='p-5'>
+						<Alert
+							message={errorBookLike.response.statusText}
+							type='error'
+							showIcon
+						/>
+					</Space>
+				) : null}
 				{filterLikedBook &&
 					filterLikedBook.map(book => {
 						return (

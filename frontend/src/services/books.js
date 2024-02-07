@@ -9,6 +9,14 @@ const BooksService = {
 		const response = await axios.get(`/books/${id}`)
 		return response.data
 	},
+	async getBookLike(id) {
+		const response = await axios.get(`/books/like/${id}`)
+		return response.data
+	},
+	async createBook(bookData) {
+		const response = await axios.post('/books', bookData)
+		return response.data
+	},
 }
 
 export default BooksService

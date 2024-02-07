@@ -1,21 +1,22 @@
-import { sun } from '../../../assets'
+import { Link } from 'react-router-dom'
 import { UserOutlined } from '@ant-design/icons'
 
 const Navbar = () => {
 	return (
-		<div className='flex gap-x-[35px] items-center'>
-			<img
-				src={sun}
-				alt='sun dark icon'
-				className='cursor-pointer w-[26px] h-[26px]'
-			/>
+		<div className='flex gap-x-[35px] items-center cursor-pointer	'>
 			<div className='flex flex-col items-center justify-center cursor-pointer'>
 				<UserOutlined className='text-primaryRed text-xl' />
 				<h3 className='text-base text-primaryRed font-semibold leading-5'>
 					shohruz
 				</h3>
 			</div>
-			<button className='px-10 py-[14px] bg-primaryRed rounded-[6px] text-bas text-white font-semibold leading-5 cursor-pointer'>
+			<Link
+				to='/create-book'
+				className='bg-primaryRed px-5 py-[14px] rounded-[6px] text-base text-white font-semibold leading-5'
+			>
+				Create book
+			</Link>
+			<button className='px-5 py-[14px] bg-primaryRed rounded-[6px] text-base text-white font-semibold leading-5 cursor-pointer'>
 				Log out
 			</button>
 		</div>

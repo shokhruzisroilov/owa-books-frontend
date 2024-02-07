@@ -192,6 +192,7 @@ route.post('/', (req, res) => {
 	}
 	books.unshift(book)
 	res.status(201).send(book)
+	res.send('Success')
 })
 
 // Get Book Id
@@ -201,6 +202,17 @@ route.get('/:bookId', (req, res) => {
 		return res.status(404).send('Berilgan Idga teng kitob topilmadi')
 	} else {
 		return res.send(book)
+	}
+})
+
+// Like Book
+route.get('/like/:bookId', (req, res) => {
+	const book = books.find(b => b.id === parseInt(req.params.bookId))
+	if (!book) {
+		return res.status(404).send('Tanlangan Idga teng kitob topilmadi')
+	} else {
+		book.like = !book.like
+		return res.send(books)
 	}
 })
 
@@ -243,15 +255,15 @@ route.delete('/:bookId', (req, res) => {
 
 function validateBook(book) {
 	const bookSchema = Joi.object({
-		title: Joi.string().required(),
-		description: Joi.string().required(),
-		author: Joi.string().required(),
-		aboutAuthor: Joi.string().required(),
-		createdAt: Joi.date().required(),
+		title: Joi.string().required().min(5).max(50),
+		description: Joi.string().required().min(20).max(300),
+		author: Joi.string().required().min(3).max(50),
+		aboutAuthor: Joi.string().required().min(10).max(200),
+		createdAt: Joi.number().required(),
 		rate: Joi.number().required(),
 		img: Joi.string().required(),
 		like: Joi.boolean().required(),
-		editionNumber: Joi.string().required(),
+		editionNumber: Joi.string().required().min(0).max(20),
 		curentlyReading: Joi.number().required(),
 		haveRead: Joi.number().required(),
 	})

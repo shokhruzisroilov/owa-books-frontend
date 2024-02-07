@@ -7,19 +7,17 @@ const Search = () => {
 	const { searchBook, setSearchBook } = useContext(Context)
 
 	return (
-		<div className='px-[60px] max-sm:px-5 max-md:px-5'>
-			<div
-				className={`w-full h-[58px]  rounded-[40px] bg-primaryBlack shadow-search ${styles.blockBetween} px-8`}
-			>
-				<input
-					type='text'
-					placeholder='Search'
-					className='w-full h-full outline-none bg-transparent placeholder:text-[#F27851] text-[#F27851] text-[20px] font-normal leading-[25.705px]'
-					value={searchBook}
-					onChange={e => setSearchBook(e.target.value)}
-				/>
-				<SearchOutlined className='text-xl text-[#F27851] cursor-pointer' />
-			</div>
+		<div
+			className={`w-full h-[58px]  rounded-[40px] bg-primaryBlack shadow-search ${styles.blockBetween} px-8`}
+		>
+			<input
+				type='text'
+				placeholder='Search'
+				className='w-full h-full outline-none bg-transparent placeholder:text-[#F27851] text-[#F27851] text-[20px] font-normal leading-[25.705px]'
+				value={searchBook}
+				onChange={e => setSearchBook(e.target.value)}
+			/>
+			<SearchOutlined className='text-xl text-[#F27851] cursor-pointer' />
 		</div>
 	)
 }

@@ -4,76 +4,102 @@ import { useState, useEffect } from 'react'
 
 const Context = createContext()
 export const ContextProvider = ({ children }) => {
-	// GetAllBooks
-	const [isLoading, setIsLoading] = useState(false)
+	const [searchBook, setSearchBook] = useState('')
+
 	const [booksData, setBooksData] = useState([])
+	const [isLoading, setIsLoading] = useState(false)
+	const [error, setError] = useState('')
+
+	const [bookInfo, setBookInfo] = useState(null)
+	const [isLoadingInfo, setIsLoadingInfo] = useState(false)
+	const [errorBookInfo, setErrorBookInfo] = useState(null)
+
+	const [errorBookLike, setErrorBookLike] = useState(null)
+	const [errorCreateBook, setErrorCreateBook] = useState(null)
+
+
+	// GetAllBooks
 	const getBooks = async () => {
 		try {
 			setIsLoading(true)
 			const response = await BooksService.getBooks()
 			setBooksData(response)
 		} catch (error) {
-			alert(error.message)
+			setError(error)
 		} finally {
 			setIsLoading(false)
 		}
 	}
+
 	useEffect(() => {
 		getBooks()
 	}, [])
 
 	// GetOnceBook
-	const [bookInfo, setBookInfo] = useState(null)
-	const [isLoadingInfo, setIsLoadingInfo] = useState(false)
-
 	const getBook = async id => {
 		try {
 			setIsLoadingInfo(true)
 			const response = await BooksService.getBook(id)
 			setBookInfo(response)
 		} catch (error) {
-			alert(error.message)
+			setErrorBookInfo(error)
 		} finally {
 			setIsLoadingInfo(false)
 		}
 	}
 
+	// Get books like update
+	const getBookLike = async id => {
+		try {
+			const response = await BooksService.getBookLike(id)
+			setBooksData(response)
+		} catch (error) {
+			setErrorBookLike(error)
+		}
+	}
+
+	useEffect(() => {
+		getBookLike(1)
+	}, [])
+
+	// Create books response
+	const createBookFunc = async bookData => {
+		try {
+			const response = await BooksService.createBook(bookData)
+			setBooksData([...booksData, response])
+			getBooks()
+		} catch (error) {
+			setErrorCreateBook(error)
+		}
+	}
+
 	// Books Search
-	const [searchBook, setSearchBook] = useState('')
 	const searchBookFunc = (data, str) => {
-		return data.filter(item =>
-			item.title.toLowerCase().includes(str.toLowerCase())
+		return data.filter(
+			item =>
+				item.title.toLowerCase().includes(str.toLowerCase()) ||
+				item.author.toLowerCase().includes(str.toLowerCase())
 		)
-		return data
 	}
 	let searchBookData = searchBookFunc(booksData, searchBook)
-
-	// Click heart books type
-	const setLikeToTrue = id => {
-		if (!booksData) {
-			return []
-		}
-		const updatedBooksLike = booksData.map(item => {
-			if (item.id === id) {
-				return { ...item, like: !item.like }
-			}
-			return item
-		})
-		setBooksData(updatedBooksLike)
-	}
 
 	return (
 		<Context.Provider
 			value={{
 				booksData,
-				searchBookData,
-				setLikeToTrue,
 				getBook,
 				bookInfo,
+				getBookLike,
+				searchBookData,
 				searchBook,
 				setSearchBook,
 				isLoading,
 				isLoadingInfo,
+				error,
+				errorBookInfo,
+				errorBookLike,
+				createBookFunc,
+				errorCreateBook,
 			}}
 		>
 			{children}
