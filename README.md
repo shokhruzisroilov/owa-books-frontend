@@ -1,5 +1,8 @@
 # Getting Started with Create React App
 
+Backend Link: https://owa-books-backend.vercel.app/
+Backend sourse: https://github.com/shokhruzisroilov/owa-books-backend.git
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
