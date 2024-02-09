@@ -22,8 +22,7 @@ const BooksInfo = () => {
 	const { bookInfo, getBook, isLoadingInfo, errorBookInfo } =
 		useContext(Context)
 	useEffect(() => {
-		const id = parseInt(bookId)
-		getBook(id)
+		getBook(bookId)
 	}, [bookId])
 
 	// Book rate

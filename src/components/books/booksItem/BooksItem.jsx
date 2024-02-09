@@ -11,7 +11,6 @@ import { Link } from 'react-router-dom'
 
 const BooksItem = ({ id, img, title, author, createdAt, rate, like }) => {
 	const { getBookLike, deleteBook } = useContext(Context)
-
 	const sliceTitle = title.length >= 33 ? title.slice(0, 33) + '...' : title
 	return (
 		<div

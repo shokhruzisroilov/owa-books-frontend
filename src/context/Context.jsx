@@ -58,10 +58,6 @@ export const ContextProvider = ({ children }) => {
 		}
 	}
 
-	useEffect(() => {
-		getBookLike(1)
-	}, [])
-
 	// Create books response
 	const createBookFunc = async bookData => {
 		try {
