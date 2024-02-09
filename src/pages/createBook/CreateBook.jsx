@@ -39,7 +39,7 @@ const CreateBook = () => {
 			haveRead: haveRead,
 		}
 		createBookFunc(bookData)
-		navigate('/')
+		// navigate('/')
 	}
 
 	return (
