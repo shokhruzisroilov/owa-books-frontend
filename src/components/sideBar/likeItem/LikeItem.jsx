@@ -18,8 +18,8 @@ const LikeItem = ({ id, img, title, author }) => {
 					className='w-[75px] h-[100px] rounded-[5px] object-cover border-[1px] border-[#F1F1F1]'
 				/>
 			</div>
-			<div>
-				<h3 className='text-[20px] text-white font-semibold leading-[25.705px]'>
+			<div className='min-w-[160px]'>
+				<h3 className='text-[20px]  text-white font-semibold leading-[25.705px]'>
 					{sliceTitle}
 				</h3>
 				<p className={`${styles.label} mt-3`}>{author}</p>

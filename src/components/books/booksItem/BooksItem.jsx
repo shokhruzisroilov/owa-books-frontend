@@ -47,27 +47,25 @@ const BooksItem = ({ id, img, title, author, createdAt, rate, like }) => {
 					/>
 				)}
 			</div>
-			<div
-				className={`${styles.blockBetween} gap-[17px] mt-[30px] absolute bottom-4`}
-			>
+			<div className={`${styles.blockBetween} mt-[30px]`}>
 				<Link to={`/book-info/${id}`}>
 					<button
-						className={`${styles.blockCenter} w-[86px] h-[25px] px-[25px] rounded-[5px] bg-white text-primaryRed text-[12px] font-[500] leading-[16px]`}
+						className={`${styles.blockCenter} w-[86px] h-[35px] absolute bottom-4 left-6 px-[25px] rounded-[5px] bg-white text-primaryRed text-[16px] font-[500] leading-[16px]`}
 					>
 						Info
 					</button>
 				</Link>
-				<div className='flex '>
+				<div className='flex absolute bottom-4 right-6'>
 					<Link to={`/edit-book/${id}`}>
 						<div
-							className={`${styles.blockCenter} py-2 px-3 rounded-[5px] bg-green-600 text-white text-[12px] font-[500] leading-[16px] cursor-pointer`}
+							className={`${styles.blockCenter} h-[35px] px-3 rounded-[5px] bg-green-600 text-white text-[12px] font-[500] leading-[16px] cursor-pointer`}
 							onClick={() => setResponseEditBook(null)}
 						>
 							<EditFilled className='text-xl text-white ' />
 						</div>
 					</Link>
 					<div
-						className={`${styles.blockCenter}  py-2 px-3 rounded-[5px] bg-primaryRed text-white text-[12px] font-[500] leading-[16px] cursor-pointer`}
+						className={`${styles.blockCenter}  h-[35px] px-3 rounded-[5px] bg-primaryRed text-white text-[12px] font-[500] leading-[16px] cursor-pointer`}
 						onClick={() => deleteBook(id)}
 					>
 						<DeleteFilled className='text-xl text-white ' />
