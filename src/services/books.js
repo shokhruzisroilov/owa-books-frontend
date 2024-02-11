@@ -21,6 +21,10 @@ const BooksService = {
 		const response = await axios.delete(`/books/${id}`)
 		return response.data
 	},
+	async editBook(id, bookData) {
+		const response = await axios.put(`/books/${id}`, bookData)
+		return response.data
+	},
 }
 
 export default BooksService

@@ -5,6 +5,7 @@ import {
 	NotFountPage,
 	BookInfo,
 	CreateBook,
+	EditBook,
 } from './pages'
 import Layoute from './layouts/Layoute'
 
@@ -24,6 +25,7 @@ const App = () => {
 					<Route index element={<HomePage />} />
 					<Route path='/book-info/:bookId' element={<BookInfo />} />
 					<Route path='/create-book' element={<CreateBook />} />
+					<Route path='/edit-book/:bookId' element={<EditBook />} />
 				</Route>
 				<Route path='/login' element={<Login />} />
 				<Route path='/register' element={<Register />} />

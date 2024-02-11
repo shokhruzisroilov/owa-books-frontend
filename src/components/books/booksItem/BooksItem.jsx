@@ -1,5 +1,6 @@
 import Context from '../../../context/Context'
 import { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import {
 	DeleteFilled,
 	EditFilled,
@@ -7,11 +8,12 @@ import {
 	HeartOutlined,
 } from '@ant-design/icons'
 import { styles } from '../../../utils/styles'
-import { Link } from 'react-router-dom'
 
 const BooksItem = ({ id, img, title, author, createdAt, rate, like }) => {
-	const { getBookLike, deleteBook } = useContext(Context)
+	const { getBookLike, deleteBook, setResponseEditBook } = useContext(Context)
+	// title
 	const sliceTitle = title.length >= 33 ? title.slice(0, 33) + '...' : title
+
 	return (
 		<div
 			className={`w-[240px] min-h-[476px] bg-primaryBlack px-6 py-4 rounded-[10px] relative`}
@@ -56,11 +58,14 @@ const BooksItem = ({ id, img, title, author, createdAt, rate, like }) => {
 					</button>
 				</Link>
 				<div className='flex '>
-					<div
-						className={`${styles.blockCenter} py-2 px-3 rounded-[5px] bg-green-600 text-white text-[12px] font-[500] leading-[16px] cursor-pointer`}
-					>
-						<EditFilled className='text-xl text-white ' />
-					</div>
+					<Link to={`/edit-book/${id}`}>
+						<div
+							className={`${styles.blockCenter} py-2 px-3 rounded-[5px] bg-green-600 text-white text-[12px] font-[500] leading-[16px] cursor-pointer`}
+							onClick={() => setResponseEditBook(null)}
+						>
+							<EditFilled className='text-xl text-white ' />
+						</div>
+					</Link>
 					<div
 						className={`${styles.blockCenter}  py-2 px-3 rounded-[5px] bg-primaryRed text-white text-[12px] font-[500] leading-[16px] cursor-pointer`}
 						onClick={() => deleteBook(id)}

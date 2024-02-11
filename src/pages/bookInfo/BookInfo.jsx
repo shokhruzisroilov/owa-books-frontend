@@ -31,7 +31,7 @@ const BooksInfo = () => {
 
 	const ScrollToTop = () => {
 		useEffect(() => {
-			window.scrollTo(0, 0) // Sahifani yuqoriga o'tkazish
+			window.scrollTo(0, 0)
 		}, [])
 
 		return null

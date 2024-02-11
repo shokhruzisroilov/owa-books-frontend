@@ -7,9 +7,5 @@ export const useForma = initialState => {
 		setValue({ ...value, [e.target.name]: e.target.value })
 	}
 
-	const resetForm = () => {
-		setValue(initialState)
-	}
-
-	return [value, handleChange, resetForm]
+	return [value, handleChange]
 }
