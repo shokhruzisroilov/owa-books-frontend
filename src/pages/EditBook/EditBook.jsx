@@ -48,6 +48,12 @@ const EditBook = () => {
 		await editBook(bookId, bookData)
 	}
 
+	// sound-effect
+	let audio = new Audio('/mouse-sound.wav')
+	const start = () => {
+		audio.play()
+	}
+
 	return (
 		<div className='p-10 w-full min-h-screen bg-primary'>
 			{responseEditBook && (
@@ -154,6 +160,7 @@ const EditBook = () => {
 				<button
 					type='submit'
 					className='bg-primaryRed px-5 py-[14px] rounded-[6px] text-base text-white font-semibold leading-5 mt-10'
+					onClick={start}
 				>
 					Edit book
 				</button>

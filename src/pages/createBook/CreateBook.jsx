@@ -40,6 +40,12 @@ const CreateBook = () => {
 		createBookFunc(bookData)
 	}
 
+	// sound-effect
+	let audio = new Audio('/mouse-sound.wav')
+	const start = () => {
+		audio.play()
+	}
+
 	return (
 		<div className='p-10 w-full min-h-screen bg-primary'>
 			{responseCreateBook && (
@@ -146,6 +152,7 @@ const CreateBook = () => {
 				<button
 					type='submit'
 					className='bg-primaryRed px-5 py-[14px] rounded-[6px] text-base text-white font-semibold leading-5 mt-10'
+					onClick={start}
 				>
 					Create book
 				</button>

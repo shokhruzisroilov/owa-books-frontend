@@ -24,6 +24,13 @@ const Register = () => {
 			console.error('Error:', error)
 		}
 	}
+
+	// sound-effect
+	let audio = new Audio('/click-sound.wav')
+	const start = () => {
+		audio.play()
+	}
+
 	return (
 		<div className={`w-full min-h-screen bg-primary ${styles.blockCenter}`}>
 			<div
@@ -66,7 +73,11 @@ const Register = () => {
 							onChange={hadlerChange}
 						/>
 					</div>
-					<button className={`${styles.buttonAuth}`} type='submit'>
+					<button
+						className={`${styles.buttonAuth}`}
+						type='submit'
+						onClick={start}
+					>
 						Sign Up
 					</button>
 					<span className={`${styles.blockBetween} py-5`}>
@@ -82,7 +93,7 @@ const Register = () => {
 					</span>
 				</form>
 				<div className='w-1/2 h- max-sm:hidden'>
-					<img src={shapesImage} alt='shapes image auth' />
+					<img src={shapesImage} alt='shapes auth' />
 				</div>
 			</div>
 		</div>

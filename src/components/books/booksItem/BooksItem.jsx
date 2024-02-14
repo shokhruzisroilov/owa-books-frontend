@@ -14,6 +14,22 @@ const BooksItem = ({ id, img, title, author, createdAt, rate, like }) => {
 	// title
 	const sliceTitle = title.length >= 33 ? title.slice(0, 33) + '...' : title
 
+	// sound-effect
+	let audio = new Audio('/click-sound.wav')
+	const start = () => {
+		audio.play()
+	}
+	// handle click button delete
+	const handleClickDelete = () => {
+		deleteBook(id)
+		start()
+	}
+	// handle click button delete
+	const handleClickEdit = () => {
+		setResponseEditBook(null)
+		start()
+	}
+
 	return (
 		<div
 			className={`w-[240px] min-h-[476px] bg-primaryBlack px-6 py-4 rounded-[10px] relative`}
@@ -21,7 +37,7 @@ const BooksItem = ({ id, img, title, author, createdAt, rate, like }) => {
 			<div className='w-full bg-white rounded-[10px]'>
 				<img
 					src={img}
-					alt='Book image not found'
+					alt='Book not found'
 					className='w-full h-[260px] object-cover'
 				/>
 			</div>
@@ -51,6 +67,7 @@ const BooksItem = ({ id, img, title, author, createdAt, rate, like }) => {
 				<Link to={`/book-info/${id}`}>
 					<button
 						className={`${styles.blockCenter} w-[86px] h-[35px] absolute bottom-4 left-6 px-[25px] rounded-[5px] bg-white text-primaryRed text-[16px] font-[500] leading-[16px]`}
+						onClick={start}
 					>
 						Info
 					</button>
@@ -59,14 +76,14 @@ const BooksItem = ({ id, img, title, author, createdAt, rate, like }) => {
 					<Link to={`/edit-book/${id}`}>
 						<div
 							className={`${styles.blockCenter} h-[35px] px-3 rounded-[5px] bg-green-600 text-white text-[12px] font-[500] leading-[16px] cursor-pointer`}
-							onClick={() => setResponseEditBook(null)}
+							onClick={handleClickEdit}
 						>
 							<EditFilled className='text-xl text-white ' />
 						</div>
 					</Link>
 					<div
 						className={`${styles.blockCenter}  h-[35px] px-3 rounded-[5px] bg-primaryRed text-white text-[12px] font-[500] leading-[16px] cursor-pointer`}
-						onClick={() => deleteBook(id)}
+						onClick={handleClickDelete}
 					>
 						<DeleteFilled className='text-xl text-white ' />
 					</div>

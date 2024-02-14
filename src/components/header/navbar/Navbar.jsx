@@ -5,6 +5,18 @@ import Context from '../../../context/Context'
 
 const Navbar = () => {
 	const { setResponseCreateBook } = useContext(Context)
+
+	// sound-effect
+	let audio = new Audio('/click-sound.wav')
+	const start = () => {
+		audio.play()
+	}
+	// handle click button
+	const handleClick = () => {
+		setResponseCreateBook(null)
+		start()
+	}
+
 	return (
 		<div className='flex gap-x-[35px] items-center cursor-pointer	'>
 			<div className='flex flex-col items-center justify-center cursor-pointer'>
@@ -16,7 +28,7 @@ const Navbar = () => {
 			<Link
 				to='/create-book'
 				className='bg-green-600 px-5 py-[14px] rounded-[6px] text-base text-white font-semibold leading-5'
-				onClick={() => setResponseCreateBook(null)}
+				onClick={handleClick}
 			>
 				Create book
 			</Link>
