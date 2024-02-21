@@ -9,8 +9,8 @@ const BooksService = {
 		const response = await axios.get(`/books/${id}`)
 		return response.data
 	},
-	async getBookLike(id) {
-		const response = await axios.get(`/books/like/${id}`)
+	async putBookLike(id) {
+		const response = await axios.put(`/books/like/${id}`)
 		return response.data
 	},
 	async createBook(bookData) {

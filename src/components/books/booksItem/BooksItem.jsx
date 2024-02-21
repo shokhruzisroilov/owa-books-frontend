@@ -9,10 +9,13 @@ import {
 } from '@ant-design/icons'
 import { styles } from '../../../utils/styles'
 
-const BooksItem = ({ id, img, title, author, createdAt, rate, like }) => {
-	const { getBookLike, deleteBook, setResponseEditBook } = useContext(Context)
+const BooksItem = ({ _id, img, title, author, createdAt, rate, like }) => {
+	const { putBookLike, deleteBook, setResponseEditBook } = useContext(Context)
 	// title
 	const sliceTitle = title.length >= 33 ? title.slice(0, 33) + '...' : title
+
+	const date = new Date(createdAt)
+	const year = date.getFullYear()
 
 	// sound-effect
 	let audio = new Audio('/click-sound.wav')
@@ -21,7 +24,7 @@ const BooksItem = ({ id, img, title, author, createdAt, rate, like }) => {
 	}
 	// handle click button delete
 	const handleClickDelete = () => {
-		deleteBook(id)
+		deleteBook(_id)
 		start()
 	}
 	// handle click button delete
@@ -45,7 +48,7 @@ const BooksItem = ({ id, img, title, author, createdAt, rate, like }) => {
 				{sliceTitle}
 			</h3>
 			<p className='text-primaryRed text-base font-normal leading-[20.564px ] pt-[5px]'>
-				{author}, {createdAt}
+				{author}, {year}
 			</p>
 			<div className={`${styles.blockBetween}`}>
 				<span className='text-white text-[14px] font-normal leading-[17.993px] pt-[5px]'>
@@ -54,17 +57,17 @@ const BooksItem = ({ id, img, title, author, createdAt, rate, like }) => {
 				{like ? (
 					<HeartFilled
 						className='text-xl text-[#F34040] cursor-pointer'
-						onClick={() => getBookLike(id)}
+						onClick={() => putBookLike(_id)}
 					/>
 				) : (
 					<HeartOutlined
 						className='text-xl text-white cursor-pointer'
-						onClick={() => getBookLike(id)}
+						onClick={() => putBookLike(_id)}
 					/>
 				)}
 			</div>
 			<div className={`${styles.blockBetween} mt-[30px]`}>
-				<Link to={`/book-info/${id}`}>
+				<Link to={`/book-info/${_id}`}>
 					<button
 						className={`${styles.blockCenter} w-[86px] h-[35px] absolute bottom-4 left-6 px-[25px] rounded-[5px] bg-white text-primaryRed text-[16px] font-[500] leading-[16px]`}
 						onClick={start}
@@ -73,7 +76,7 @@ const BooksItem = ({ id, img, title, author, createdAt, rate, like }) => {
 					</button>
 				</Link>
 				<div className='flex absolute bottom-4 right-6'>
-					<Link to={`/edit-book/${id}`}>
+					<Link to={`/edit-book/${_id}`}>
 						<div
 							className={`${styles.blockCenter} h-[35px] px-3 rounded-[5px] bg-green-600 text-white text-[12px] font-[500] leading-[16px] cursor-pointer`}
 							onClick={handleClickEdit}

@@ -37,6 +37,9 @@ const BooksInfo = () => {
 		return null
 	}
 
+	const date = new Date(bookInfo?.createdAt)
+	const year = date.getFullYear()
+
 	return (
 		<div className='p-10 w-full min-h-screen bg-primary'>
 			<ScrollToTop />
@@ -99,8 +102,7 @@ const BooksInfo = () => {
 								{bookInfo?.title}
 							</h3>
 							<p className='text-white text-[15px] font-normal mt-[18px]'>
-								By <span className='underline'>{bookInfo?.author}</span>,{' '}
-								{bookInfo?.createdAt}
+								By <span className='underline'>{bookInfo?.author}</span>, {year}
 							</p>
 							<p className='text-white text-[15px] font-normal mt-[5px]'>
 								{bookInfo?.editionNumber}

@@ -12,7 +12,7 @@ const EditBook = () => {
 
 	const { bookId } = useParams()
 
-	const editBookData = booksData.filter(item => item.id === bookId && item)
+	const editBookData = booksData.filter(item => item._id === bookId && item)
 
 	const [value, handleChange] = useForma({
 		title: editBookData && editBookData[0].title,
@@ -37,12 +37,11 @@ const EditBook = () => {
 			description: value.description,
 			author: value.author,
 			aboutAuthor: value.aboutAuthor,
-			createdAt: editBookData[0].createdAt,
 			rate: editBookData[0].rate,
 			img: value.img,
 			like: editBookData[0].like,
 			editionNumber: editBookData[0].editionNumber,
-			curentlyReading: editBookData[0].curentlyReading,
+			currentlyReading: editBookData[0].currentlyReading,
 			haveRead: editBookData[0].haveRead,
 		}
 		await editBook(bookId, bookData)

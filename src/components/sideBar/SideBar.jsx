@@ -6,9 +6,9 @@ import Context from '../../context/Context'
 import { Alert, Space } from 'antd'
 
 const SideBar = ({ setSideBar }) => {
-	const { booksData, errorBookLike } = useContext(Context)
+	const { searchBookData, errorBookLike } = useContext(Context)
 	// Filter sidebar books
-	const filterLikedBook = booksData?.filter(item => item.like === true)
+	const filterLikedBook = searchBookData?.filter(item => item.like === true)
 	// console.log(filterLikedBook)
 
 	return (
@@ -38,12 +38,13 @@ const SideBar = ({ setSideBar }) => {
 						/>
 					</Space>
 				) : null}
+
 				{filterLikedBook &&
 					filterLikedBook.map(book => {
 						return (
 							<LikeItem
-								key={book.id}
-								id={book.id}
+								key={book._id}
+								_id={book._id}
 								img={book.img}
 								title={book.title}
 								author={book.author}

@@ -16,10 +16,9 @@ const CreateBook = () => {
 		aboutAuthor: '',
 		img: '',
 	})
-	const createdAt = new Date().getFullYear()
 	const rate = Math.floor(Math.random() * 5)
 	const editionNumber = 'First Edition'
-	const curentlyReading = 1
+	const currentlyReading = 1
 	const haveRead = 1
 
 	const handleSubmit = e => {
@@ -29,12 +28,11 @@ const CreateBook = () => {
 			description: value.description,
 			author: value.author,
 			aboutAuthor: value.aboutAuthor,
-			createdAt: createdAt,
 			rate: rate,
 			like: false,
 			img: value.img,
 			editionNumber: editionNumber,
-			curentlyReading: curentlyReading,
+			currentlyReading: currentlyReading,
 			haveRead: haveRead,
 		}
 		createBookFunc(bookData)
