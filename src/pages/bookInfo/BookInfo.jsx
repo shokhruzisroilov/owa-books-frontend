@@ -23,7 +23,7 @@ const BooksInfo = () => {
 		useContext(Context)
 	useEffect(() => {
 		getBook(bookId)
-	}, [bookId, getBook])
+	}, [bookId])
 
 	// Book rate
 	const totalStars = 5

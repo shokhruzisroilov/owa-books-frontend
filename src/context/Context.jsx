@@ -52,8 +52,6 @@ export const ContextProvider = ({ children }) => {
 	}
 
 	// Get books like update
-	// const [likeBookData, setLikeBookData] = useState([])
-	// console.log(likeBookData)
 	const updateBookLike = async id => {
 		try {
 			const response = await BooksService.updateBookLike(id)
