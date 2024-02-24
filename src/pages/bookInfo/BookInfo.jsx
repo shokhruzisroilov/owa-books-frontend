@@ -23,7 +23,7 @@ const BooksInfo = () => {
 		useContext(Context)
 	useEffect(() => {
 		getBook(bookId)
-	}, [bookId])
+	}, [bookId, getBook])
 
 	// Book rate
 	const totalStars = 5
@@ -75,7 +75,7 @@ const BooksInfo = () => {
 						<div className='px-8 py-6 bg-primaryBlack text-white text-[11px] font-[700] leading-[12px] rounded-[10px]'>
 							<img
 								src={bookInfo?.img}
-								alt='Book image is not fount'
+								alt='Book is not fount'
 								className='w-[210px] bg-white text-black h-[277px]'
 							/>
 							<div className={`flex items-center justify-around mt-[27px]`}>
@@ -98,7 +98,7 @@ const BooksInfo = () => {
 							</div>
 						</div>
 						<div>
-							<h3 className='text-white text-[35px] font-normal leading-[44.983px ]'>
+							<h3 className='max-w-[500px] text-white text-[35px] font-normal leading-[44.983px ]'>
 								{bookInfo?.title}
 							</h3>
 							<p className='text-white text-[15px] font-normal mt-[18px]'>
@@ -187,7 +187,7 @@ const BooksInfo = () => {
 										{bookInfo?.author}
 									</h4>
 								</span>
-								<img src={author} alt='author image' className='w-[88px]' />
+								<img src={author} alt='author ' className='w-[88px]' />
 							</div>
 							<p className='mt-6 text-white text-[15px] font-normal leading-[19.278px]'>
 								{bookInfo?.aboutAuthor}

@@ -52,10 +52,13 @@ export const ContextProvider = ({ children }) => {
 	}
 
 	// Get books like update
-	const putBookLike = async id => {
+	// const [likeBookData, setLikeBookData] = useState([])
+	// console.log(likeBookData)
+	const updateBookLike = async id => {
 		try {
-			const response = await BooksService.putBookLike(id)
-			setBooksData(response)
+			const response = await BooksService.updateBookLike(id)
+			console.log(response)
+			getBooks()
 		} catch (error) {
 			setErrorBookLike(error)
 		}
@@ -90,10 +93,9 @@ export const ContextProvider = ({ children }) => {
 	const deleteBook = async id => {
 		try {
 			const response = await BooksService.deleteBook(id)
-			const bookId = response.id
-			const deleteBookData = booksData.filter(b => b._id !== bookId)
+			const deleteBookData = booksData.filter(b => b._id !== response._id)
 			setBooksData(deleteBookData)
-			getBooks()
+			// getBooks()
 		} catch (error) {
 			setErrorBookLike(error)
 		}
@@ -115,7 +117,7 @@ export const ContextProvider = ({ children }) => {
 				booksData,
 				getBook,
 				bookInfo,
-				putBookLike,
+				updateBookLike,
 				searchBookData,
 				searchBook,
 				setSearchBook,

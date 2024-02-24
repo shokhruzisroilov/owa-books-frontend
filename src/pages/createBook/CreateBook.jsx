@@ -113,6 +113,8 @@ const CreateBook = () => {
 							value={value.description}
 							onChange={handleChange}
 						></textarea>
+					</div>
+					<div className='flex flex-col gap-10 w-full'>
 						<input
 							type='text'
 							placeholder='URL img'
@@ -122,8 +124,6 @@ const CreateBook = () => {
 							value={value.img}
 							onChange={handleChange}
 						/>
-					</div>
-					<div className='flex flex-col gap-10 w-full'>
 						<input
 							type='text'
 							placeholder='Author'

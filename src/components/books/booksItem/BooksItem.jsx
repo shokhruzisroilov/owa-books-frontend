@@ -10,7 +10,8 @@ import {
 import { styles } from '../../../utils/styles'
 
 const BooksItem = ({ _id, img, title, author, createdAt, rate, like }) => {
-	const { putBookLike, deleteBook, setResponseEditBook } = useContext(Context)
+	const { updateBookLike, deleteBook, setResponseEditBook } =
+		useContext(Context)
 	// title
 	const sliceTitle = title.length >= 33 ? title.slice(0, 33) + '...' : title
 
@@ -57,12 +58,12 @@ const BooksItem = ({ _id, img, title, author, createdAt, rate, like }) => {
 				{like ? (
 					<HeartFilled
 						className='text-xl text-[#F34040] cursor-pointer'
-						onClick={() => putBookLike(_id)}
+						onClick={() => updateBookLike(_id)}
 					/>
 				) : (
 					<HeartOutlined
 						className='text-xl text-white cursor-pointer'
-						onClick={() => putBookLike(_id)}
+						onClick={() => updateBookLike(_id)}
 					/>
 				)}
 			</div>

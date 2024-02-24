@@ -4,7 +4,7 @@ import { useContext } from 'react'
 import Context from '../../../context/Context'
 
 const LikeItem = ({ _id, img, title, author }) => {
-	const { putBookLike } = useContext(Context)
+	const { updateBookLike } = useContext(Context)
 
 	const sliceTitle = title.length >= 13 ? title.slice(0, 13) + '...' : title
 	return (
@@ -25,7 +25,7 @@ const LikeItem = ({ _id, img, title, author }) => {
 				<p className={`${styles.label} mt-3`}>{author}</p>
 				<HeartFilled
 					className='text-xl text-[#F34040] cursor-pointer'
-					onClick={() => putBookLike(_id)}
+					onClick={() => updateBookLike(_id)}
 				/>
 			</div>
 		</div>
